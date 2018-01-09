@@ -38,10 +38,10 @@ _ODP_INLINE uint32_t odp_packet_tailroom(odp_packet_t pkt)
 	return _odp_packet_tailroom(pkt);
 }
 
-_ODP_INLINE odp_pool_t odp_packet_pool(odp_packet_t pkt)
-{
-	return _odp_packet_pool(pkt);
-}
+//_ODP_INLINE odp_pool_t odp_packet_pool(odp_packet_t pkt)
+//{
+//	return _odp_packet_pool(pkt);
+//}
 
 _ODP_INLINE odp_pktio_t odp_packet_input(odp_packet_t pkt)
 {

@@ -66,10 +66,10 @@ static inline uint32_t _odp_packet_tailroom(odp_packet_t pkt)
 }
 
 /** @internal Inline function @param pkt @return */
-static inline odp_pool_t _odp_packet_pool(odp_packet_t pkt)
-{
-	return _odp_pkt_get(pkt, odp_pool_t, pool);
-}
+//static inline odp_pool_t _odp_packet_pool(odp_packet_t pkt)
+//{
+//	return _odp_pkt_get(pkt, odp_pool_t, pool);
+//}
 
 /** @internal Inline function @param pkt @return */
 static inline odp_pktio_t _odp_packet_input(odp_packet_t pkt)
