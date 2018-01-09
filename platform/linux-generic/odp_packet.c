@@ -61,6 +61,11 @@ static inline odp_packet_hdr_t *buf_to_packet_hdr(odp_buffer_t buf)
 	return (odp_packet_hdr_t *)buf_hdl_to_hdr(buf);
 }
 
+static inline pool_t *pool_from_buf_hdr(odp_buffer_hdr_t *buf_hdr)
+{
+	return buf_hdr->pool_ptr;
+}
+
 odp_packet_t _odp_packet_from_buf_hdr(odp_buffer_hdr_t *buf_hdr)
 {
 	return (odp_packet_t)buf_hdr;
@@ -336,7 +341,7 @@ static inline void link_segments(odp_packet_hdr_t *pkt_hdr[], int num)
 	int cur, i;
 	odp_packet_hdr_t *hdr;
 	odp_packet_hdr_t *head = pkt_hdr[0];
-	uint32_t seg_len = pool_entry_from_hdl(head->buf_hdr.pool_hdl)->seg_len;
+	uint32_t seg_len = pool_from_buf_hdr(&head->buf_hdr)->seg_len;
 
 	cur = 0;
 
@@ -383,7 +388,7 @@ static inline void init_segments(odp_packet_hdr_t *pkt_hdr[], int num)
 
 	/* First segment is the packet descriptor */
 	hdr = pkt_hdr[0];
-	seg_len = pool_entry_from_hdl(hdr->buf_hdr.pool_hdl)->seg_len;
+	seg_len = pool_from_buf_hdr(&hdr->buf_hdr)->seg_len;
 
 	/* Defaults for single segment packet */
 	hdr->buf_hdr.seg[0].data = hdr->buf_hdr.base_data;
@@ -414,7 +419,7 @@ static inline void reset_seg(odp_packet_hdr_t *pkt_hdr, int first, int num)
 	void *base;
 	int i;
 	seg_entry_t *seg;
-	uint32_t seg_len = pool_entry_from_hdl(hdr->buf_hdr.pool_hdl)->seg_len;
+	uint32_t seg_len = pool_from_buf_hdr(&hdr->buf_hdr)->seg_len;
 	uint8_t idx;
 
 	seg_entry_find_idx(&hdr, &idx, first);
@@ -1351,7 +1356,8 @@ int odp_packet_add_data(odp_packet_t *pkt_ptr, uint32_t offset, uint32_t len)
 	if (offset > pktlen)
 		return -1;
 
-	newpkt = odp_packet_alloc(pkt_hdr->buf_hdr.pool_hdl, pktlen + len);
+	newpkt = odp_packet_alloc(pool_from_buf_hdr(&pkt_hdr->buf_hdr)->pool_hdl,
+				  pktlen + len);
 
 	if (newpkt == ODP_PACKET_INVALID)
 		return -1;
@@ -1380,7 +1386,8 @@ int odp_packet_rem_data(odp_packet_t *pkt_ptr, uint32_t offset, uint32_t len)
 	if (offset > pktlen || offset + len > pktlen)
 		return -1;
 
-	newpkt = odp_packet_alloc(pkt_hdr->buf_hdr.pool_hdl, pktlen - len);
+	newpkt = odp_packet_alloc(pool_from_buf_hdr(&pkt_hdr->buf_hdr)->pool_hdl,
+				  pktlen - len);
 
 	if (newpkt == ODP_PACKET_INVALID)
 		return -1;
