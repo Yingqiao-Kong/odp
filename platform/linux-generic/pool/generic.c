@@ -50,6 +50,15 @@ ODP_STATIC_ASSERT(CONFIG_PACKET_SEG_SIZE < 0xffff,
 pool_table_t *pool_tbl;
 __thread pool_local_t local;
 
+#include <odp/visibility_begin.h>
+
+/*Fill in pool header field offsets for inline functions */
+const _odp_pool_inline_offset_t _odp_pool_inline ODP_ALIGNED_CACHE = {
+	.pool_hdl = offsetof(pool_t, pool_hdl)
+};
+
+#include <odp/visibility_end.h>
+
 static int generic_pool_init_global(void)
 {
 	uint32_t i;
@@ -263,7 +272,6 @@ static void init_buffers(pool_t *pool)
 		buf_hdr->type = type;
 		buf_hdr->event_type = type;
 		buf_hdr->event_subtype = ODP_EVENT_NO_SUBTYPE;
-		buf_hdr->pool_hdl = pool->pool_hdl;
 		buf_hdr->pool_ptr = pool;
 		buf_hdr->uarea_addr = uarea;
 		/* Show user requested size through API */
@@ -281,8 +289,6 @@ static void init_buffers(pool_t *pool)
 
 		/* Store base values for fast init */
 		buf_hdr->base_data = buf_hdr->seg[0].data;
-		buf_hdr->buf_end   = &data[offset + pool->seg_len +
-				     pool->tailroom];
 
 		/* Store buffer index into the global pool */
 		ring_enq(ring, mask, i);
