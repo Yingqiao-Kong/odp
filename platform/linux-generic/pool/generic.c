@@ -281,8 +281,6 @@ static void init_buffers(pool_t *pool)
 
 		/* Store base values for fast init */
 		buf_hdr->base_data = buf_hdr->seg[0].data;
-		buf_hdr->buf_end   = &data[offset + pool->seg_len +
-				     pool->tailroom];
 
 		/* Store buffer index into the global pool */
 		ring_enq(ring, mask, i);

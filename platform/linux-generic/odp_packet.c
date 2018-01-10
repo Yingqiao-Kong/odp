@@ -215,8 +215,10 @@ static inline uint32_t seg_tailroom(odp_packet_hdr_t *pkt_hdr, int seg_idx)
 
 	odp_buffer_hdr_t *hdr = seg->hdr;
 	uint8_t *tail         = seg->data + seg->len;
+	pool_t *pool = hdr->pool_ptr;
+	uint8_t *buf_end = hdr->base_data + hdr->size + pool->tailroom;
 
-	return hdr->buf_end - tail;
+	return buf_end - tail;
 }
 
 static inline void push_head(odp_packet_hdr_t *pkt_hdr, uint32_t len)

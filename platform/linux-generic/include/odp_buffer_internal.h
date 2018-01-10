@@ -95,9 +95,6 @@ struct odp_buffer_hdr_t {
 	/* Event type. Maybe different than pool type (crypto compl event) */
 	int8_t    event_type;
 
-	/* Initial buffer tail pointer */
-	uint8_t  *buf_end;
-
 	/* User area pointer */
 	void    *uarea_addr;
 
