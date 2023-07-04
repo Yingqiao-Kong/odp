@@ -1,0 +1,13 @@
+<map id="debug_inlines.h" name="debug_inlines.h">
+<area shape="rect" id="node1" title=" " alt="" coords="670,5,794,32"/>
+<area shape="rect" id="node2" href="$buffer__inlines_8h_source.html" title=" " alt="" coords="5,87,128,114"/>
+<area shape="rect" id="node3" href="$crypto__inlines_8h_source.html" title=" " alt="" coords="152,87,277,114"/>
+<area shape="rect" id="node4" href="$dma__inlines_8h_source.html" title=" " alt="" coords="302,87,415,114"/>
+<area shape="rect" id="node5" href="$ipsec__inlines_8h_source.html" title=" " alt="" coords="439,87,558,114"/>
+<area shape="rect" id="node6" href="$packet__inlines_8h.html" title=" " alt="" coords="582,87,709,114"/>
+<area shape="rect" id="node7" href="$packet__vector__inlines_8h.html" title=" " alt="" coords="733,87,907,114"/>
+<area shape="rect" id="node8" href="$rwlock__recursive__inlines_8h_source.html" title=" " alt="" coords="932,87,1127,114"/>
+<area shape="rect" id="node9" href="$schedule__inlines_8h_source.html" title=" " alt="" coords="1151,87,1294,114"/>
+<area shape="rect" id="node10" href="$spinlock__recursive__inlines_8h_source.html" title=" " alt="" coords="1318,80,1461,121"/>
+<area shape="rect" id="node11" href="$timer__inlines_8h_source.html" title=" " alt="" coords="1485,87,1603,114"/>
+</map>
